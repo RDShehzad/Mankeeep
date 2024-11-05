@@ -1,0 +1,367 @@
+﻿
+@{
+	ViewData["Title"] = "Add Expense";
+	Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="content container-fluid pb-0">
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="content-page-header ">
+				<h5>Category </h5>
+				<div class="list-btn">
+					<ul class="filter-list">
+						<li>
+							<a class="btn btn-filters w-auto popup-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Filter"><span class="me-2"><img src="~/assets/img/icons/filter-icon.svg" alt="filter"></span>Filter </a>
+						</li>
+						<li class="">
+							<div class="dropdown dropdown-action" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Download">
+								<a href="#" class="btn-filters" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fe fe-download"></i></span></a>
+								<div class="dropdown-menu dropdown-menu-right">
+									<ul class="d-block">
+										<li>
+											<a class="d-flex align-items-center download-item" href="javascript:void(0);" download><i class="far fa-file-pdf me-2"></i>PDF</a>
+										</li>
+										<li>
+											<a class="d-flex align-items-center download-item" href="javascript:void(0);" download><i class="far fa-file-text me-2"></i>CVS</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a class="btn-filters" href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Print"><span><i class="fe fe-printer"></i></span> </a>
+						</li>
+						<li>
+							<a class="btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#add_category"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Category</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+		<!-- Search Filter -->
+		<div id="filter_inputs" class="card filter-card">
+			<div class="card-body pb-0">
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<div class="input-block mb-3">
+							<label>Name</label>
+							<input type="text" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="input-block mb-3">
+							<label>Email</label>
+							<input type="text" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="input-block mb-3">
+							<label>Phone</label>
+							<input type="text" class="form-control">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Search Filter -->
+		<!-- All Invoice -->
+		<!-- Table -->
+<div class="row">
+	<div class="col-sm-12">
+		<div class="card-table">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-center table-hover datatable">
+						<thead class="thead-light">
+							<tr>
+								<th>#</th>
+								<th>Category Name</th>
+								<th>Reference Number</th>
+								<th>Description</th>
+								<th>Date</th>
+								<th class="no-sort">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Data rows will be dynamically inserted here -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+
+<!-- Add Category Modal -->
+<div class="modal custom-modal modal-lg fade" id="add_category" role="dialog">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header border-0 pb-0">
+				<div class="form-header modal-header-title text-start mb-0">
+					<h4 class="mb-0">Add Category</h4>
+				</div>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<form action="#add_category form">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card-body">
+								<div class="form-group-item border-0 pb-0 mb-0">
+									<div class="row">
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Name <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" placeholder="Enter Title">
+											</div>
+										</div>
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Reference Number <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" placeholder="Enter Ref Number">
+											</div>
+										</div>
+										<div class="col-lg-6 col-sm-6">
+	                                       <div class="input-block mb-3">
+		                                     <label>Date and Time <span class="text-danger">*</span></label>
+											  <input type="datetime-local" class="form-control" placeholder="Select Date and Time">
+	                                         </div>
+                                          </div>
+
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Description <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" placeholder="Enter Description">
+											</div>
+										</div>
+										
+										<div class="col-lg-12 col-sm-12">
+											<div class="input-block mb-0 pb-0">
+												<label>Image</label>
+												<div class="input-block service-upload mb-0">
+													<span><img src="~/assets/img/icons/drop-icon.svg" alt="upload"></span>
+													<h6 class="drop-browse align-center">Drop your files here or<span class="text-primary ms-1">browse</span></h6>
+													<p class="text-muted">Maximum size: 50MB</p>
+													<input type="file" multiple="" id="image_sign">
+													<div id="frames"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
+					<button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn" id ="addCategory" >Add Category</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Edit Category Modal -->
+<div class="modal custom-modal modal-lg fade" id="edit_category" role="dialog">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header border-0 pb-0">
+				<div class="form-header modal-header-title text-start mb-0">
+					<h4 class="mb-0">Edit Category</h4>
+				</div>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<form action="#">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card-body">
+								<div class="form-group-item border-0 pb-0 mb-0">
+									<div class="row">
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Name <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" placeholder="Enter Title">
+											</div>
+										</div>
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Reference Number <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" placeholder="Enter Ref Number">
+											</div>
+										</div>
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Date and Time <span class="text-danger">*</span></label>
+												<input type="date" class="form-control" placeholder="Select Date and Time">
+											</div>
+										</div>
+										<div class="col-lg-6 col-sm-6">
+											<div class="input-block mb-3">
+												<label>Description <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" placeholder="Enter Description">
+											</div>
+										</div>
+										<div class="col-lg-12 col-sm-12">
+											<div class="input-block mb-0 pb-0">
+												<label>Image</label>
+												<div class="input-block service-upload mb-0">
+													<span><img src="~/assets/img/icons/drop-icon.svg" alt="upload"></span>
+													<h6 class="drop-browse align-center">Drop your files here or <span class="text-primary ms-1">browse</span></h6>
+													<p class="text-muted">Maximum size: 50MB</p>
+													<input type="file" multiple="" id="image_sign2">
+													<div id="frames2"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
+					<button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Update Category</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		// Fetch all categories on page load
+		 fetchCategories(); // Uncomment if you want to fetch categories on load
+
+		// Event handler for adding a category
+		$('#addCategory').on('click', function (e) {
+			e.preventDefault();
+
+			// Collect form data
+			let data = {
+				expense_category_name: $('#add_category input[placeholder="Enter Title"]').val(),
+				expense_category_reference_number: $('#add_category input[placeholder="Enter Ref Number"]').val(),
+				expense_category_date: $('#add_category input[type="datetime-local"]').val(),
+				expense_category_description: $('#add_category input[placeholder="Enter Description"]').val(),
+			};
+
+			// Make the AJAX call
+			$.ajax({
+				url: '/api/Expense/addCategory',
+				type: 'POST',
+				contentType: 'application/json',
+				data: JSON.stringify(data),
+				success: function (response) {
+					$('#add_category').modal('hide');
+					console.log('Category added successfully:', response);
+					// Optionally call fetchCategories() here if you want to refresh the list
+				},
+				error: function (xhr, status, error) {
+					console.error('Error occurred:', status, error);
+					alert('Failed to add category: ' + xhr.responseText);
+				}
+			});
+		});
+
+		// Update: Populate modal and update category
+		$('.datatable').on('click', '.btn-edit', function () {
+			let categoryId = $(this).data('id');
+			$.get('/api/Expense/getCategory/' + categoryId, function (data) {
+				$('#edit_category input[placeholder="Enter Title"]').val(data.expense_category_name);
+				$('#edit_category input[placeholder="Enter Ref Number"]').val(data.expense_category_reference_number);
+				$('#edit_category input[type="datetime-local"]').val(data.expense_category_date);
+				$('#edit_category input[placeholder="Enter Description"]').val(data.expense_category_description);
+				$('#edit_category').data('id', categoryId).modal('show');
+			});
+		});
+
+		// Edit category submission
+		$('#edit_category form').on('submit', function (e) {
+			e.preventDefault();
+			let categoryId = $('#edit_category').data('id');
+			let updatedData = {
+				expense_category_name: $('#edit_category input[placeholder="Enter Title"]').val(),
+				expense_category_reference_number: $('#edit_category input[placeholder="Enter Ref Number"]').val(),
+				expense_category_date: $('#edit_category input[type="datetime-local"]').val(),
+				expense_category_description: $('#edit_category input[placeholder="Enter Description"]').val(),
+			};
+
+			$.ajax({
+				url: '/api/Expense/updateCategory/' + categoryId,
+				type: 'PUT',
+				data: JSON.stringify(updatedData),
+				contentType: 'application/json',
+				success: function () {
+					alert('Category updated successfully!');
+					$('#edit_category').modal('hide');
+					fetchCategories();
+				},
+				error: function () {
+					alert('Failed to update category');
+				}
+			});
+		});
+
+		// Delete: Remove category
+		$('.datatable').on('click', '.btn-delete', function () {
+			let categoryId = $(this).data('id');
+			if (confirm('Are you sure you want to delete this category?')) {
+				$.ajax({
+					url: '/api/Expense/deleteCategory/' + categoryId,
+					type: 'DELETE',
+					success: function () {
+						alert('Category deleted successfully!');
+						fetchCategories();
+					},
+					error: function () {
+						alert('Failed to delete category');
+					}
+				});
+			}
+		});
+
+		// Helper Function to Fetch Categories
+		 // Helper Function to Fetch Categories
+		function fetchCategories() {
+			$.get('/api/Expense/getCategories', function (data) {
+				let tableBody = $('.datatable tbody');
+				tableBody.empty();
+				$.each(data, function (index, category) {
+					tableBody.append(`
+						<tr>
+							<td>${index + 1}</td>
+							<td>
+								<a href="#" class="product-list-item-img">
+									<alt="product-list"><span>${category.expense_category_name}</span>
+								</a>
+							</td>
+							<td>${category.expense_category_reference_number}</td>
+							<td>${category.expense_category_description}</td>
+							<td>${category.expense_category_date}</td>
+							<td class="d-flex align-items-center">
+								<a class="btn-action-icon me-2 btn-edit" data-id="${category.expense_category_id}" href="javascript:void(0);">
+									<i class="fe fe-edit"></i>
+								</a>
+								<a class="btn-action-icon btn-delete" data-id="${category.expense_category_id}" href="javascript:void(0);">
+									<i class="fe fe-trash-2"></i>
+								</a>
+							</td>
+						</tr>
+					`);
+				});
+			});
+		}
+	});
+</script>
+
