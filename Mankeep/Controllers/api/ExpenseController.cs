@@ -26,8 +26,6 @@ namespace Mankeep.Controllers.api
 		{
 			try
 			{
-
-
 				var categories = await _context.expense_category.ToListAsync();
 				return Ok(categories);
 			}

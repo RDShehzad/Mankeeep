@@ -15,7 +15,9 @@ namespace Mankeep.Models
 
 		public string Email { get; set; }
 
-		
+		public int office_id { get; set; }
+
+
 		[Column("active_status")]
 		public bool ActiveStatus { get; set; }
 

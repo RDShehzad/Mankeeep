@@ -147,7 +147,7 @@
 							<div class="col-lg-6 col-md-12 col-sm-12">
 								<div class="input-block mb-2">
 									<label>Date</label>
-									<input type="datetime_local" class="form-control" placeholder="Enter Date" id="supplierdate">
+									<input type="datetime-local" class="form-control" name="supplier_date" placeholder="Enter Date" id="supplierdate">
 								</div>
 							</div>
 
@@ -169,7 +169,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
-						<button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Add Supplier</button>
+						<button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn"  id="addsupplier">Add Supplier</button>
 					</div>
 				</form>
 			</div>
@@ -178,7 +178,8 @@
 	<!-- /Add Supplier Modal -->
 
 	<!-- Edit Supplier Modal -->
-	<div class="modal custom-modal modal-lg fade" id="edit_supplier" role="dialog">
+
+	<div class="modal custom-modal modal-lg fade" id="Edit_supplier" role="dialog">
 		<div class="modal-dialog modal-dialog-centered modal-md">
 			<div class="modal-content">
 				<div class="modal-header border-0 pb-0">
@@ -192,51 +193,75 @@
 				<form action="#">
 					<div class="modal-body">
 						<div class="row">
-							<div class="col-lg-12 col-md-12">
-								<div class="input-block mb-3">
-									<label>Name</label>
-									<input type="text" class="form-control" value="John Smith" placeholder="Enter Name">
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Supplier Name</label>
+									<input type="text" class="form-control" placeholder="Enter Name" id = "suppliernameUP">
+								</div>
+
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Reference number</label>
+									<input type="text" class="form-control" placeholder=" Reference number" id="supplierrefnumberUP">
 								</div>
 							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="input-block mb-3">
-									<label>Email</label>
-									<input type="text" class="form-control" value="john@example.com" placeholder="Select Date">
+
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Supplier phone</label>
+									<input type="number" class="form-control" placeholder="Enter Phone Number" id="supplierphoneUP">
 								</div>
 							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="input-block mb-3">
-									<label>Phone Number</label>
-									<input type="text" class="form-control" value="+1 989-438-3131" placeholder="Enter Reference Number">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Address</label>
+									<input type="text" class="form-control" placeholder="Enter Address" id="supplieraddressUP">
 								</div>
 							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="input-block mb-0">
-									<label>Balance</label>
-									<input type="text" class="form-control" value="$4200" placeholder="Enter Reference Number">
+
+
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Date</label>
+									<input type="datetime-local" class="form-control" name="supplier_date" placeholder="Enter Date" id="supplierdateUP">
 								</div>
 							</div>
+
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Closing Balance</label>
+									<input type="number" class="form-control" placeholder="Enter Closing Balance Amount" id="supplierbalanceUP">
+								</div>
+							</div>
+
+							<div class="col-lg-8 col-md-6 col-sm-12">
+							<div class="input-block mb-2" id="summernote_container">
+								<label class="form-control-label">Description</label>
+							<textarea class="summernote form-control" placeholder="Enter Description" name="Suppler_description" id="supplierdescriptionUP"></textarea>
+							</div>
+						</div>
+
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn me-2">Cancel</button>
-						<button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Update</button>
+						<button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
+						<button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn"  id="editsupplier">update</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function () {
 		// Event handler for adding a supplier
+		fetchSuppliers();
 
-
-
-		$('#addsupplier').on('click',  function (e) {
-			e.preventDefault();
+        $('#addsupplier').on('click', function (e) {
+		    e.preventDefault(); 
 
 			// Collect form data
 			let data = {
@@ -246,12 +271,12 @@
 				supplier_address: $('#supplieraddress').val(),
 				supplier_description: $('#supplierdescription').val(),
 				supplier_date: $('#supplierdate').val(),
-				supplier_balance: $('#supplierbalance').val()
+				Balnce: $('#supplierbalance').val()
 			};
 
 			// Make the AJAX call
 			$.ajax({
-				url: '/api/Expense/addsupplier',
+				url: '/api/Supplier/Addsupplier',
 				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
@@ -260,53 +285,53 @@
 					console.log('Supplier added successfully:', response);
 					fetchSuppliers(); // Refresh the supplier list
 				},
-				error: function (xhr, status, error) {
-					console.error('Error occurred:', status, error);
-					alert('Failed to add supplier: ' + xhr.responseText);
-				}
+				error: function (xhr) {
+				alert('Failed to add supplier: ' + xhr.responseText); 
+			}
 			});
 		});
 
 		// Event handler to open edit modal with current supplier data
 		$('.datatable').on('click', '.btn-edit', function () {
 			let supplierId = $(this).data('id');
-			$.get('/api/Expense/getSupplier/' + supplierId, function (data) {
-				$('#suppliername').val(data.supplier_name);
-				$('#supplierrefnumber').val(data.supplier_reference_number);
-				$('#supplierphone').val(data.supplier_phone);
-				$('#supplieraddress').val(data.supplier_address);
-				$('#supplierdescription').val(data.supplier_description);
-				$('#supplierdate').val(data.supplier_date);
-				$('#supplierbalance').val(data.supplier_balance);
-				$('#add_supplier').data('id', supplierId).modal('show');
+			$.get('/api/Supplier/getSupplier/' + supplierId, function (data) {
+				$('#suppliernameUP').val(data.supplier_name);
+				$('#supplierrefnumberUP').val(data.supplier_reference_number);
+				$('#supplierphoneUP').val(data.supplier_phone);
+				$('#supplieraddressUP').val(data.supplier_address);
+				$('#supplierdescriptionUP').val(data.supplier_description);
+				$('#supplierdateUP').val(data.supplier_date);
+				$('#supplierbalanceUP').val(data.balance);
+				$('#Edit_supplier').data('id', supplierId).modal('show');
 			});
 		});
 
 		// Submit updated supplier data
-		$('#addsupplier').on('click',  function (e) {
+		$('#editsupplier').on('click',  function (e) {
 			e.preventDefault();
-			let supplierId = $('#addsupplier').data('id'); // Get supplier ID from modal data
+			let supplierId = $('#Edit_supplier').data('id'); // Get supplier ID from modal data
 
 			if (!supplierId) return; // Exit if no supplier ID (i.e., this is an "Add" operation, not an "Update")
 
 			let updatedData = {
-				supplier_name: $('#suppliername').val(),
-				supplier_reference_number: $('#supplierrefnumber').val(),
-				supplier_phone: $('#supplierphone').val(),
-				supplier_address: $('#supplieraddress').val(),
-				supplier_description: $('#supplierdescription').val(),
-				supplier_date: $('#supplierdate').val(),
-				supplier_balance: $('#supplierbalance').val()
+				supplier_id: supplierId,
+				supplier_name: $('#suppliernameUP').val(),
+				supplier_reference_number: $('#supplierrefnumberUP').val(),
+				supplier_phone: $('#supplierphoneUP').val(),
+				supplier_address: $('#supplieraddressUP').val(),
+				supplier_description: $('#supplierdescriptionUP').val(),
+				supplier_date: $('#supplierdateUP').val(),
+				Balnce: $('#supplierbalanceUP').val()
 			};
 
 			$.ajax({
-				url: '/api/Expense/updateSupplier/' + supplierId,
-				type: 'PUT',
+				url: '/api/Supplier/updateSupplier/' + supplierId,
+				type: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(updatedData),
 				success: function () {
 					alert('Supplier updated successfully!');
-					$('#add_supplier').modal('hide');
+					$('#Edit_supplier').modal('hide');
 					fetchSuppliers(); // Refresh the supplier list
 				},
 				error: function () {
@@ -317,9 +342,10 @@
 
 		// Helper function to fetch and display suppliers in the table
 		function fetchSuppliers() {
-			$.get('/api/Expense/getSuppliers', function (data) {
+			$.get('/api/Supplier/getSuppliers', function (data) {
 				let tableBody = $('.datatable tbody');
 				tableBody.empty();
+				console.log(data);
 				$.each(data, function (index, supplier) {
 					tableBody.append(`
 						<tr>
@@ -328,14 +354,15 @@
 							<td>${supplier.supplier_reference_number}</td>
 							<td>${supplier.supplier_phone}</td>
 							<td>${supplier.supplier_address}</td>
+							<td>${supplier.supplier_description}</td>
 							<td>${supplier.supplier_date}</td>
-							<td>${supplier.supplier_balance}</td>
+							<td>${supplier.balance}</td>
 							<td class="d-flex align-items-center">
 								<a class="btn-action-icon me-2 btn-edit" data-id="${supplier.supplier_id}" href="javascript:void(0);">
 									<i class="fe fe-edit"></i>
 								</a>
-								<a class="btn-action-icon btn-delete" data-id="${supplier.supplier_id}" href="javascript:void(0);">
-									<i class="fe fe-trash-2"></i>
+								<a class="btn-action-icon btn-delete" data-id="${supplier}" href="javascript:void(0);">
+								<i class="fe fe-trash-2"></i>
 								</a>
 							</td>
 						</tr>
@@ -344,4 +371,11 @@
 			});
 		}
 	});
+
+
+
+
+	 
+
+
 </script>

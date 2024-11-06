@@ -7,6 +7,7 @@ using Mankeep;
 using Mankeep.Models;
 using System.Text;
 using BCrypt.Net;
+using Microsoft.Extensions.Configuration;
 
 
 namespace YourNamespace.Controllers
@@ -16,10 +17,11 @@ namespace YourNamespace.Controllers
 	public class AccountloginController : ControllerBase
 	{
 		private readonly ApplicationDbContext _context;
-
-		public AccountloginController(ApplicationDbContext context)
+		private readonly IConfiguration _configuration;
+		public AccountloginController(ApplicationDbContext context, IConfiguration configuration)
 		{
 			_context = context;
+			_configuration = configuration;
 		}
 		[HttpPost("Login")]
 		public IActionResult Login([FromBody] LoginViewModel model)
@@ -29,6 +31,9 @@ namespace YourNamespace.Controllers
 				var user = _context.users.SingleOrDefault(u => u.Email == model.Email);
 				if (user != null && VerifyPasswordHash(model.Password, user.Password))
 				{
+					var configValues = _configuration.GetSection("AppSettings");					
+					configValues["UserId"] = user.Id.ToString();
+					configValues["office_id"] = user.office_id.ToString();
 					return Ok(new { success = true });
 				}
 			}
