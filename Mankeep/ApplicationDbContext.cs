@@ -24,7 +24,9 @@ namespace Mankeep
 		public DbSet<expenses> expenses { get; set; }
 		public DbSet<supplier> suppliers { get; set; }
 		public DbSet<customers> customers { get; set; }
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		public DbSet<assets> assets { get; set; }
+        public DbSet<income> income { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<expenses>()
 				.HasOne(e => e.expense_category)

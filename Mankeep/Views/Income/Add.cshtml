@@ -1,0 +1,274 @@
+﻿@{
+    ViewData["Title"] = "Income";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="content container-fluid pb-0">
+    <div class="page-header">
+        <div class="content-page-header">
+            <h5>Income</h5>
+            <div class="list-btn">
+                <ul class="filter-list">
+                    <li>
+                        <a class="btn btn-filters w-auto popup-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Filter"><span class="me-2"><img src="~/assets/img/icons/filter-icon.svg" alt="filter"></span>Filter </a>
+                    </li>
+                    <li>
+                        <div class="dropdown dropdown-action" data-bs-toggle="tooltip" data-bs-placement="top" title="download">
+                            <a href="#" class="btn-filters" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fe fe-download"></i></span></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <ul class="d-block">
+                                    <li><a class="d-flex align-items-center download-item" href="javascript:void(0);" download><i class="far fa-file-pdf me-2"></i>PDF</a></li>
+                                    <li><a class="d-flex align-items-center download-item" href="javascript:void(0);" download><i class="far fa-file-text me-2"></i>CVS</a></li>
+                                </ul>
+                            </div>
+                        </div>                                                        
+                    </li>
+                    <li>
+                        <a class="btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#add_income"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Income</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover datatable">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th style="display: none;">income_id</th>
+                                    <th>Income Reference</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Reason</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Income Modal -->
+    <div class="modal custom-modal modal-lg fade" id="add_income" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h4 class="mb-0">Add Income</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Income Reference Number</label>
+                                    <input type="text" class="form-control" placeholder="Enter Reference Number" id="incomeReferenceNumber">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Amount</label>
+                                    <input type="number" class="form-control" placeholder="Enter Amount" id="incomeAmount">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Date</label>
+                                    <input type="datetime-local" class="form-control" id="incomeDate">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Reason</label>
+                                    <textarea class="form-control" placeholder=""Enter Reason" id="incomeReason"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Description</label>
+                                    <textarea class="form-control" placeholder="Enter Description" id="incomeDescription"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" id="addIncome">Add Income</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Income Modal -->
+    <div class="modal custom-modal modal-lg fade" id="Edit_income" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h4 class="mb-0">Edit Income</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="#">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Income Reference Number</label>
+                                    <input type="text" class="form-control" id="incomeReferenceNumberUP">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Amount</label>
+                                    <input type="number" class="form-control" id="incomeAmountUP">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Date</label>
+                                    <input type="datetime-local" class="form-control" id="incomeDateUP">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Reason</label>
+                                    <input type="text" class="form-control" id="incomeReasonUP">
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 col-sm-12">
+                                <div class="input-block mb-2">
+                                    <label>Description</label>
+                                    <textarea class="form-control" id="incomeDescriptionUP"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" id="editIncome">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Fetch income and populate table
+        fetchIncome();
+
+        // Event handler for adding income
+        $('#addIncome').on('click', function (e) {
+            e.preventDefault();
+
+            let data = {
+                income_reference_number: $('#incomeReferenceNumber').val(),
+                income_amount: $('#incomeAmount').val(),
+                income_date: $('#incomeDate').val(),
+                income_reason: $('#incomeReason').val(),
+                income_description: $('#incomeDescription').val()
+            };
+
+            $.ajax({
+                url: '/api/Income/AddIncome',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function () {
+                    $('#add_income').modal('hide');
+                    alert('Income added successfully!');
+                    fetchIncome(); // Refresh list
+                },
+                error: function (xhr) {
+                    alert('Failed to add income: ' + xhr.responseText);
+                }
+            });
+        });
+
+        // Event handler to open edit modal with current income data
+        $('.datatable').on('click', '.btn-edit', function () {
+            let incomeId = $(this).data('id');
+            console.log(incomeId);
+            $.get('/api/Income/getIncome/' + incomeId, function (data) {
+                $('#incomeReferenceNumberUP').val(data.income_reference_number);
+                $('#incomeAmountUP').val(data.income_amount);
+                $('#incomeDateUP').val(data.income_date);
+                $('#incomeReasonUP').val(data.income_reason);
+                $('#incomeDescriptionUP').val(data.income_description);
+                $('#Edit_income').data('id', incomeId).modal('show');
+            });
+        });
+
+        // Event handler for updating income
+        $('#editIncome').on('click', function (e) {
+            e.preventDefault();
+
+           let incomeId = $('#Edit_income').data('id');
+
+         if (!incomeId) return;
+            console.log(incomeId)
+            let data = {
+                income_reference_number: $('#incomeReferenceNumberUP').val(),
+                income_amount: $('#incomeAmountUP').val(),
+                income_date: $('#incomeDateUP').val(),
+                income_reason: $('#incomeReasonUP').val(),
+                income_description: $('#incomeDescriptionUP').val()
+            };
+
+            $.ajax({
+                url: '/api/Income/UpdateIncome/' + incomeId,
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function () {
+                    $('#Edit_income').modal('hide');
+                    alert('Income updated successfully!');
+                    fetchIncome(); // Refresh list
+                },
+                error: function (xhr) {
+                    alert('Failed to update income: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+
+    function fetchIncome() {
+        $.get('/api/Income/GetIncome', function (data) {
+            let tableBody = '';
+            data.forEach(function (item) {
+                tableBody += `<tr>
+                    <td>${item.income_id}</td>
+                    <td style="display: none;">${item.income_id}</td>
+                    <td>${item.income_reference_number}</td>
+                    <td>${item.income_amount}</td>
+                    <td>${item.income_date}</td>
+                    <td>${item.income_description}</td>
+                    <td>${item.income_reason}</td>
+                   <td class="d-flex align-items-center">
+                    <a class="btn-action-icon me-2 btn-edit" data-id="${item.income_id}" href="javascript:void(0);">
+                    <i class="fe fe-edit"></i>
+                    </a>
+                    <a class="btn-action-icon btn-delete" data-id="${item}" href="javascript:void(0);">
+                    <i class="fe fe-trash-2"></i>
+                     </a>
+                    </td>
+                </tr>`; 
+            });
+            $('.datatable tbody').html(tableBody);
+        });
+    }
+</script>

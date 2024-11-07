@@ -1,0 +1,382 @@
+﻿@{
+	ViewData["Title"] = "Add Asset";
+	Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="content container-fluid pb-0">
+
+	<div class="page-header">
+		<div class="content-page-header ">
+			<h5>Assets</h5>
+			<div class="list-btn">
+				<ul class="filter-list">
+					<li>
+						<a class="btn btn-filters w-auto popup-toggle" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Filter"><span class="me-2"><img src="~/assets/img/icons/filter-icon.svg" alt="filter"></span>Filter </a>
+					</li>
+					<li class="">
+						<div class="dropdown dropdown-action" data-bs-toggle="tooltip" data-bs-placement="top" title="download">
+							<a href="#" class="btn-filters" data-bs-toggle="dropdown" aria-expanded="false"><span><i class="fe fe-download"></i></span></a>
+							<div class="dropdown-menu dropdown-menu-end">
+								<ul class="d-block">
+									<li>
+										<a class="d-flex align-items-center download-item" href="javascript:void(0);" download><i class="far fa-file-pdf me-2"></i>PDF</a>
+									</li>
+									<li>
+										<a class="d-flex align-items-center download-item" href="javascript:void(0);" download><i class="far fa-file-text me-2"></i>CVS</a>
+									</li>
+								</ul>
+							</div>
+						</div>														
+					</li>
+					<li>
+						<a class="btn-filters" href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="bottom" title="print"><span><i class="fe fe-printer"></i></span> </a>
+					</li>
+					<li>
+						<a class="btn btn-import" href="javascript:void(0);"><span><i class="fe fe-check-square me-2"></i>Import</span></a>
+					</li>
+					<li>
+						<a class="btn btn-primary" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#add_asset"><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Asset</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- /Page Header -->
+
+	<!-- Search Filter -->
+	<div id="filter_inputs" class="card filter-card">
+		<div class="card-body pb-0">
+			<div class="row">
+				<div class="col-sm-6 col-md-3">
+					<div class="input-block mb-3">
+						<label>Asset Name</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="input-block mb-3">
+						<label>Asset Type</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Search Filter -->
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card-table">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-striped table-hover datatable">
+							<thead class="thead-light">
+								<tr>
+									<th>#</th>
+									<th style="display: none;">asset_id</th> 
+									<th>Asset Name</th>
+									<th>Asset ref number </th>
+									<th>Asset Type</th>
+									<th>Purchase Date</th>
+									<th>Purchase Price</th>
+									<th>Description</th>
+									<th>Disposal Date</th>
+									<th>Disposal Reason</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Asset Modal -->
+	<div class="modal custom-modal modal-lg fade" id="add_asset" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-md">
+			<div class="modal-content">
+				<div class="modal-header border-0 pb-0">
+					<div class="form-header modal-header-title text-start mb-0">
+						<h4 class="mb-0">Add Asset</h4>
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form action="#">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Asset Name</label>
+									<input type="text" class="form-control" placeholder="Enter Name" id="assetName">
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Reference Number</label>
+									<input type="text" class="form-control" placeholder="Reference Number" id="assetRefno">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Asset Type</label>
+									<input type="text" class="form-control" placeholder="Asset Type" id="assetType">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Purchase Date</label>
+									<input type="datetime-local" class="form-control" name="purchase_date" id="purchaseDate">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Purchase Price</label>
+									<input type="number" class="form-control" placeholder="Enter Purchase Price" id="purchasePrice">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Disposal Date</label>
+									<input type="datetime-local" class="form-control" name="disposal_date" id="disposalDate">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Disposal Reason</label>
+									<textarea class="form-control" placeholder="Enter Disposal Reason" id="disposalReason"></textarea>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Description</label>
+									<textarea class="form-control" placeholder="Enter Description" id="assetDescription"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" data-bs-dismiss="modal" class="btn btn-back cancel-btn me-2">Cancel</button>
+						<button type="submit" data-bs-dismiss="modal" class="btn btn-primary" id="addAsset">Add Asset</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Edit Asset Modal -->
+<div class="modal custom-modal modal-lg fade" id="Edit_asset" role="dialog">
+	<div class="modal-dialog modal-dialog-centered modal-md">
+		<div class="modal-content">
+			<div class="modal-header border-0 pb-0">
+				<div class="form-header modal-header-title text-start mb-0">
+					<h4 class="mb-0">Edit Asset</h4>
+				</div>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form action="#">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Asset Name</label>
+									<input type="text" class="form-control" placeholder="Enter Name" id="assetNameUP">
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Reference Number</label>
+									<input type="text" class="form-control" placeholder="Reference Number" id="assetRefnoUP">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Asset Type</label>
+									<input type="text" class="form-control" placeholder="Asset Type" id="assetTypeUP">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Purchase Date</label>
+									<input type="datetime-local" class="form-control" name="purchase_date" id="purchaseDateUP">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Purchase Price</label>
+									<input type="number" class="form-control" placeholder="Enter Purchase Price" id="purchasePriceUP">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Disposal Date</label>
+									<input type="datetime-local" class="form-control" name="disposal_date" id="disposalDateUP">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-12 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Disposal Reason</label>
+								
+									<textarea class="form-control" placeholder="Enter Disposal Reason" id="disposalReasonUP"></textarea>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<div class="input-block mb-2">
+									<label>Description</label>
+									<textarea class="form-control" placeholder="Enter Description" id="assetDescriptionUP"></textarea>
+								</div>
+							</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-back cancel-btn me-2" data-bs-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-primary" id="editAsset">Update Asset</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+	<!-- Fetch and Update Assets Data -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			// Fetch assets and populate table
+			fetchAssets();
+
+			// Event handler for adding an asset
+			$('#addAsset').on('click', function (e) {
+				e.preventDefault();
+
+				let data = {
+					assets_name: $('#assetName').val(),
+					asset_type: $('#assetType').val(),
+					purchase_date: $('#purchaseDate').val(),
+					purchase_price: $('#purchasePrice').val(),
+					assets_description: $('#assetDescription').val(),
+					disposal_date: $('#disposalDate').val(),
+					disposal_reason: $('#disposalReason').val(),
+					assets_name_reference_number: $('#assetRefno').val()
+				};
+
+				$.ajax({
+					url: '/api/Asset/AddAsset',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(data),
+					success: function () {
+						$('#add_asset').modal('hide');
+						alert('Asset added successfully!');
+						fetchAssets(); // Refresh list
+					},
+					error: function (xhr) {
+						alert('Failed to add asset: ' + xhr.responseText);
+					}
+				});
+			});
+
+				 // Event handler to open edit modal with current asset data
+				$('.datatable').on('click', '.btn-edit', function () {
+					let assetId = $(this).data('id');
+					$.get('/api/Asset/getAsset/' + assetId, function (data) {
+						$('#assetNameUP').val(data.assets_name);
+						$('#assetTypeUP').val(data.asset_type);
+						$('#assetRefnoUP').val(data.assets_name_reference_number);
+						$('#purchaseDateUP').val(data.purchase_date);  // Ensure your format is compatible (e.g., YYYY-MM-DDTHH:mm)
+						$('#purchasePriceUP').val(data.purchase_price);
+						$('#disposalDateUP').val(data.disposal_date);  // Same for disposal_date
+						$('#disposalReasonUP').val(data.disposal_reason);
+						$('#assetDescriptionUP').val(data.assets_description);
+						$('#Edit_asset').data('id', assetId).modal('show');
+					});
+				});
+
+
+					// Submit updated asset data
+					$('#editAsset').on('click', function (e) {
+						e.preventDefault();
+						let assetId = $('#Edit_asset').data('id');
+
+						if (!assetId) return;
+
+						let updatedData = {
+							asset_id: assetId,
+							assets_name: $('#assetNameUP').val(),
+							asset_type: $('#assetTypeUP').val(),
+							assets_name_reference_number: $('#assetRefnoUP').val(),
+							purchase_date: $('#purchaseDateUP').val(),
+							purchase_price: $('#purchasePriceUP').val(),
+							assets_description: $('#assetDescriptionUP').val(),
+							disposal_date: $('#disposalDateUP').val(),
+							disposal_reason: $('#disposalReasonUP').val()
+						};
+
+						$.ajax({
+							url: '/api/Asset/updateAsset/' + assetId,
+							type: 'POST',
+							contentType: 'application/json',
+							data: JSON.stringify(updatedData),
+							success: function () {
+								alert('Asset updated successfully!');
+								$('#Edit_asset').modal('hide');
+								fetchAssets(); // Refresh the asset list
+							},
+							error: function () {
+								alert('Failed to update asset');
+							}
+						});
+					});
+
+
+
+			// Fetch and display assets
+			function fetchAssets() {
+				$.ajax({
+					url: '/api/Asset/GetAssets',
+					type: 'GET',
+					success: function (assets) {
+						let tableBody = $('.datatable tbody');
+						tableBody.empty();
+
+						assets.forEach(function (asset, index) {
+							tableBody.append(`
+								<tr>
+									<td>${index + 1}</td>
+									<td style="display: none;">${asset.asset_id}</td>
+									<td>${asset.assets_name}</td>
+									<td>${asset.assets_name_reference_number}</td>
+									<td>${asset.asset_type}</td>
+									<td>${new Date(asset.purchase_date).toLocaleDateString()}</td>
+									<td>${asset.purchase_price}</td>
+									<td>${asset.asset_description}</td>
+									<td>${asset.disposal_date ? new Date(asset.disposal_date).toLocaleDateString() : ''}</td>
+									<td>${asset.disposal_reason || ''}</td>
+									<td class="d-flex align-items-center">
+										<a class="btn-action-icon me-2 btn-edit" data-id="${asset.asset_id}" href="javascript:void(0);">
+											<i class="fe fe-edit"></i>
+										</a>
+										<a class="btn-action-icon btn-delete" data-id="${asset}" href="javascript:void(0);">
+										<i class="fe fe-trash-2"></i>
+										</a>
+										</td>
+								</tr>
+							`);
+						});
+					},
+					error: function () {
+						alert('Failed to load assets data!');
+					}
+				});
+			}
+		});
+	</script>
+</div>

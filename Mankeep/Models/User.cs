@@ -14,8 +14,8 @@ namespace Mankeep.Models
 		public string Password { get; set; }
 
 		public string Email { get; set; }
-
-		public int office_id { get; set; }
+     
+        public int office_id { get; set; }
 
 
 		[Column("active_status")]

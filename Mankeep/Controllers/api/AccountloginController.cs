@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mankeep.Models; // Replace with your namespace
+using Mankeep.Models; 
 using System.Linq;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
@@ -10,7 +10,7 @@ using BCrypt.Net;
 using Microsoft.Extensions.Configuration;
 
 
-namespace YourNamespace.Controllers
+namespace Mankeep.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
@@ -34,7 +34,7 @@ namespace YourNamespace.Controllers
 					var configValues = _configuration.GetSection("AppSettings");					
 					configValues["UserId"] = user.Id.ToString();
 					configValues["office_id"] = user.office_id.ToString();
-					return Ok(new { success = true });
+                    return Ok(new { success = true });
 				}
 			}
 			return Unauthorized(new { success = false, message = "Invalid email or password." });
@@ -45,5 +45,7 @@ namespace YourNamespace.Controllers
 			// Verify password using bcrypt
 			return BCrypt.Net.BCrypt.Verify(inputPassword, storedHashedPassword);
 		}
+
+
 	}
 }

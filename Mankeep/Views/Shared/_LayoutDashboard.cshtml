@@ -248,7 +248,7 @@
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
-                    <nav class="greedys sidebar-horizantal">
+                 @* @*    <nav class="greedys sidebar-horizantal">
                         <ul class="list-inline-item list-unstyled links">
                             <li class="menu-title"><span>Main</span></li>
                             <li class="submenu">
@@ -256,7 +256,7 @@
                                 <ul>
                                     <li><a asp-controller="DashboardController" asp-action="Index">My Dashboard</a></li>
                                 </ul>
-                            </li>
+                            </li>   
                             <li class="submenu">
                                 <a href="#"><i class="fe fe-grid"></i> <span> Registration</span> <span class="menu-arrow"></span></a>
                                 <ul>
@@ -277,7 +277,7 @@
                                 </ul>
                             </li> *@
 
-                            <li class="submenu">
+                        @*     <li class="submenu">
                                 <a href="#"><span> <i class="fe fe-users"></i> Customers</span> <span class="menu-arrow"></span></a>
                                 <ul>
                                     <li><a href="customers.html"><i class="fe fe-users"></i> <span>Customers</span></a></li>
@@ -612,9 +612,9 @@
                             <!-- Extras -->
 
 
-                        </ul>
+                        </ul> *@
                         <!-- /Settings -->
-                    </nav>
+                   @*  </nav>  *@
 
                     <ul class="sidebar-vertical">
 
@@ -632,13 +632,11 @@
                                 <li><a asp-controller="Expense" asp-action="Add">Expenses</a></li>
                                  <li><a asp-controller="Supplier" asp-action="Add">Supplier</a></li>
                                  <li><a asp-controller="Customer" asp-action="Add">Customers</a></li>
-                                <li><a asp-controller="Dashboard" asp-action="Index">Income</a></li>
-                                 <li><a asp-controller="Dashboard" asp-action="Index">Products</a></li>
-                                <li><a asp-controller="Dashboard" asp-action="Index">Assets</a></li>
+                                  <li><a asp-controller="Assets" asp-action="Add">Assets</a></li>
+                                <li><a asp-controller="Income" asp-action="Add">Income</a></li>
+                               @*   <li><a asp-controller="Products" asp-action="Add">Products</a></li> *@
+                              
                                
-
-
-
 
                             </ul>
                         </li>

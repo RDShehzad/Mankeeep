@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Mankeep.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mankeep.Controllers
@@ -7,14 +9,21 @@ namespace Mankeep.Controllers
 	{
 		// GET: DashboardController
 		private readonly ApplicationDbContext _context;
-		public DashboardController( ApplicationDbContext context)
-		{
+        private readonly IConfiguration _configuration;
+        public string ProfileImage;
+        public string Name;
+        public DashboardController( ApplicationDbContext context, IConfiguration configuration)
+        {
 		
 			_context = context;
-		}
+            
+        }
+		
 		public ActionResult Index()
 		{
-			return View();
+           
+          
+            return View();
 		}
 
 		// GET: DashboardController/Details/5

@@ -80,6 +80,7 @@
         $(document).ready(function () {
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
+               
 
                 const email = $('input[type="email"]').val();
                 const password = $('input[type="password"]').val();
@@ -94,10 +95,12 @@
                             window.location.href = '/dashboard'; 
                         } else {
                             alert(response.message || "Invalid login credentials");
+                              $("#loginForm")[0].reset();
                         }
                     },
                     error: function () {
                         alert("Login failed. Please try again.");
+                        $("#loginForm")[0].reset();
                     }
                 });
             });
