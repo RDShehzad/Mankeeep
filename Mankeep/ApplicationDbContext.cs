@@ -26,6 +26,9 @@ namespace Mankeep
 		public DbSet<customers> customers { get; set; }
 		public DbSet<assets> assets { get; set; }
         public DbSet<income> income { get; set; }
+        public DbSet<addbooks> addbooks { get; set; }
+
+        public DbSet<workspace> workspace { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<expenses>()

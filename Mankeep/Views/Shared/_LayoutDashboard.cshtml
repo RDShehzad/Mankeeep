@@ -624,10 +624,17 @@
                                 <li><a asp-controller="Dashboard" asp-action="Index">My Dashboard</a></li>
                             </ul>
                         </li>
+
+                        <li class="submenu">
+                            <a href="#"><i class="fe fe-home"></i> <span> Workspace</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a asp-controller="Workspace" asp-action="Index">My Workspace</a></li>
+                            </ul>
+                        </li>
                         <li class="submenu">
                             <a href="#"><i class="fa fa-user-plus"></i> <span> Registration</span> <span class="menu-arrow"></span></a>
                             <ul style="display: none;">
-                                @*  <li><a asp-controller="Dashboard" asp-action="Index">Accounts</a></li> *@
+                                 <li><a asp-controller="Addbooks" asp-action="Add">Add Book</a></li>
                                 <li><a asp-controller="Expense" asp-action="Category">Expense Category</a></li>
                                 <li><a asp-controller="Expense" asp-action="Add">Expenses</a></li>
                                  <li><a asp-controller="Supplier" asp-action="Add">Supplier</a></li>

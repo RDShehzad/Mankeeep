@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<!-- Modal for Adding Workspace -->
+<div class="modal top fade"
+     id="add_workspace"
+     tabindex="-1"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+     data-mdb-backdrop="true"
+     data-mdb-keyboard="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Workspace</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close" id="Cross_close"></button>
+            </div>
+            <div class="modal-body">
+               
+              <div class="d-flex justify-content-end mb-3">
+                    <a class="btn btn-primary" href="javascript:void(0);" id="btnworkspace">
+                        <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Workspace
+                    </a>
+                </div>
+                <h3>Workspaces</h3>
+                <div id="workspaceList" class="mt-3 d-flex flex-wrap">
+                    <!-- Loaded workspaces will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles for Workspace Cards -->
+<style>
+    #workspaceList .company-detail-card {
+        margin-right: 10px;
+        margin-bottom: 20px;
+        background-color: #7539FF;
+        color: #fff;
+        border-radius: 8px;
+        padding: 15px;  
+        width: 50px;
+        height: 250px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #btnworkspace {
+    margin-right: 30px; 
+    }
+
+    #workspaceList .company-detail-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script for Modal Display and Workspace CRUD -->
+<script>
+    $(document).ready(function () {
+        // Show modal on page load
+        $('#add_workspace').modal('show');
+
+        // Load existing workspaces on page load
+        loadWorkspaces();
+
+        // Close modal and redirect to dashboard when the close button is clicked
+        $('#Cross_close').on('click', function (e) {
+            e.preventDefault();
+            $('#add_workspace').modal('hide');
+            setTimeout(() => {
+                window.location.href = "/Dashboard";
+            }, 300);
+        });
+
+        // Handle Add Workspace form submission
+        $('#btnworkspace').on('submit', function (e) {
+            e.preventDefault();
+            const workspaceName = $('#workspaceName').val();
+
+            $.ajax({
+                url: '/api/Workspace/AddWorkspace',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ workspace_name: workspaceName }),
+                success: function (response) {
+                    if (response.success) {
+                        $('#workspaceForm')[0].reset();
+                        loadWorkspaces(); // Refresh workspace list
+                    } else {
+                        alert(response.message || "Failed to add workspace.");
+                    }
+                },
+                error: function () {
+                    alert("Error adding workspace. Please try again.");
+                }
+            });
+        });
+    });
+
+    // Function to load workspaces
+    function loadWorkspaces() {
+        $.ajax({
+            url: '/api/Workspace/getAll',
+            method: 'GET',
+            success: function (response) {
+                $('#workspaceList').empty();
+                if (response && response.length > 0) {
+                    response.forEach(function (workspace) {
+                        const cardHtml = `
+                            <div class="col-lg-3 col-sm-6 d-flex">
+                                <div class="company-detail-card w-100">
+                                    <div class="dash-comapny-info">
+                                        <h6>${workspace.workspace_name}</h6>
+                                        <p><span>${workspace.workspace_name || ''}</span></p>
+                                    </div>
+                                </div>
+                            </div>`;
+                        $('#workspaceList').append(cardHtml);
+                    });
+                } else {
+                    $('#workspaceList').append('<p>No workspaces available</p>');
+                }
+            },
+            error: function () {
+                alert("Failed to load workspaces.");
+            }
+        });
+    }
+</script>
